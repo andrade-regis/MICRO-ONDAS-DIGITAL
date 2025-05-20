@@ -1,0 +1,80 @@
+﻿<Window x:Class="APPLICATION.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:APPLICATION"
+        WindowStartupLocation="CenterScreen"
+        Background="Transparent"
+        AllowsTransparency="True"
+        FontFamily="Segoe UI"
+        WindowStyle="None"
+        mc:Ignorable="d"
+        FontSize="16"
+        Title="MainWindow">
+    
+        <Border Name="Border_Background"
+                CornerRadius="25"                
+                Height="450" 
+                Width="900"
+                Background="#FFFEFE">
+            
+            <Grid Name="Grid_Main"
+                  Background="Transparent">
+
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="700"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
+
+                <Image Name="Image_Benner"
+                       Grid.Column="0"
+                       VerticalAlignment="Center"
+                       HorizontalAlignment="Left"
+                       Width="300"
+                       Source="C:\Apps\MICRO-ONDAS-DIGITAL\MANUAL\BENNER_LOGO.png"/>
+
+                <Grid Name="Grid_ControlPanel"
+                      Grid.Column="1">
+
+                    <Border Name="Background_ControlPanel"
+                            Background="LightGray"
+                            CornerRadius="10 10 10 10">
+                        
+                    </Border>
+                    
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40"/>
+                        <RowDefinition Height="70"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="*"/>
+                        <RowDefinition Height="70"/>
+                    </Grid.RowDefinitions>
+
+                    <Border Name="Border_Sair"
+                            Margin="5"
+                            Background="#E91D48"
+                            CornerRadius="0 25 0 0">
+                        
+                        <TextBlock Name="Text_Sair"
+                                   Grid.Row="0"
+                                   Foreground="#FFFEFE"
+                                   VerticalAlignment="Center"
+                                   HorizontalAlignment="Center"
+                                   FontWeight="Bold"
+                                   Text="SAIR"/>
+                    </Border>
+
+                    <Border Name="Border_Display"
+                            Grid.Row="1"
+                            Margin="5"
+                            Background="#513CFF">
+                        
+                    </Border>
+                    
+                    
+
+                </Grid>
+            </Grid>            
+        </Border>
+</Window>
