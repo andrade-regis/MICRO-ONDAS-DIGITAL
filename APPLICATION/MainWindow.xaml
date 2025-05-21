@@ -3,6 +3,7 @@
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         xmlns:local="clr-namespace:APPLICATION"
         WindowStartupLocation="CenterScreen"
         Background="Transparent"
@@ -13,68 +14,311 @@
         FontSize="16"
         Title="MainWindow">
     
-        <Border Name="Border_Background"
-                CornerRadius="25"                
-                Height="450" 
-                Width="900"
-                Background="#FFFEFE">
-            
-            <Grid Name="Grid_Main"
-                  Background="Transparent">
+    <Border Name="Border_Background"
+            CornerRadius="25"                
+            Height="450" 
+            Width="900"
+            Background="#FFFEFE">
+        
+        <Grid Name="Grid_Main"
+              Background="Transparent">
 
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="700"/>
-                    <ColumnDefinition Width="*"/>
-                </Grid.ColumnDefinitions>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="700"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
 
-                <Image Name="Image_Benner"
-                       Grid.Column="0"
-                       VerticalAlignment="Center"
-                       HorizontalAlignment="Left"
-                       Width="300"
-                       Source="C:\Apps\MICRO-ONDAS-DIGITAL\MANUAL\BENNER_LOGO.png"/>
+            <Image Name="Image_Benner"
+                   Grid.Column="0"
+                   VerticalAlignment="Center"
+                   HorizontalAlignment="Left"
+                   Width="300"
+                   Source="C:\Apps\MICRO-ONDAS-DIGITAL\MANUAL\BENNER_LOGO.png"/>
 
-                <Grid Name="Grid_ControlPanel"
-                      Grid.Column="1">
+            <Grid Name="Grid_ControlPanel"
+                  Grid.Column="1">
+                
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40"/>
+                    <RowDefinition Height="70"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="*"/>
+                    <RowDefinition Height="70"/>
+                </Grid.RowDefinitions>
 
-                    <Border Name="Background_ControlPanel"
-                            Background="LightGray"
-                            CornerRadius="10 10 10 10">
-                        
-                    </Border>
+                <Border Name="Border_Sair"
+                        Margin="5"
+                        Background="#E91D48"
+                        MouseUp="Border_Sair_MouseUp"
+                        CornerRadius="0 25 0 0">
                     
-                    <Grid.RowDefinitions>
-                        <RowDefinition Height="40"/>
-                        <RowDefinition Height="70"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="*"/>
-                        <RowDefinition Height="70"/>
-                    </Grid.RowDefinitions>
+                    <TextBlock Name="Text_Sair"
+                               Grid.Row="0"
+                               Foreground="#FFFEFE"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"
+                               FontWeight="Bold"
+                               Text="SAIR"/>
+                </Border>
 
-                    <Border Name="Border_Sair"
-                            Margin="5"
-                            Background="#E91D48"
-                            CornerRadius="0 25 0 0">
-                        
-                        <TextBlock Name="Text_Sair"
-                                   Grid.Row="0"
-                                   Foreground="#FFFEFE"
-                                   VerticalAlignment="Center"
-                                   HorizontalAlignment="Center"
-                                   FontWeight="Bold"
-                                   Text="SAIR"/>
-                    </Border>
+                <Grid Name="Grid_Display"
+                        Grid.Row="1"
+                        Margin="5"
+                        Background="LightGray">
 
-                    <Border Name="Border_Display"
-                            Grid.Row="1"
-                            Margin="5"
-                            Background="#513CFF">
-                        
-                    </Border>
-                    
-                    
+                    <xctk:MaskedTextBox Name="Text_Timer_Edit"
+                                        Mask="00:00"
+                                        VerticalAlignment="Center"
+                                        HorizontalAlignment="Center"
+                                        FontSize="50"
+                                        FontWeight="Bold"
+                                        Foreground="#513CFF"
+                                        Visibility="Hidden"/>
 
+                    <TextBlock Name="Text_Timer"
+                               VerticalAlignment="Center"
+                               HorizontalAlignment="Center"
+                               FontSize="50"
+                               FontWeight="Bold"
+                               Foreground="#513CFF"
+                               Text="00:00"
+                               Visibility="Visible"/>
                 </Grid>
-            </Grid>            
-        </Border>
+
+                <Border Name="Border_Keyboard"
+                        Grid.Row="3"
+                        Margin="5"
+                        Background="Gray">
+
+                    <Grid Name="Grid_Keys">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+                        <Grid.RowDefinitions>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                            <RowDefinition Height="*"/>
+                        </Grid.RowDefinitions>
+                    
+                        <Border Grid.Row="0"
+                                Name="Border_Key_One"
+                                MouseUp="Border_Key_One_MouseUp"
+                                Margin="7">
+                            
+                            <TextBlock Name="Key_One"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       FontSize="20"
+                                       Foreground="White"
+                                       Text="1"/>
+                        </Border>
+                    
+                        <Border Grid.Row="0"
+                                Name="Border_Key_Two"
+                                MouseUp="Border_Key_Two_MouseUp"
+                                Grid.Column="1"
+                                Margin="7">
+                    
+                            <TextBlock Name="Key_Two"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       FontSize="20"
+                                       Foreground="White"
+                                       Text="2"/>
+                        </Border>
+                    
+                        <Border Grid.Row="0"
+                                Name="Border_Key_Three"
+                                MouseUp="Border_Key_Three_MouseUp"
+                                Grid.Column="2"
+                                Margin="7">
+                    
+                            <TextBlock Name="Key_Three"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       FontSize="20"
+                                       Foreground="White"
+                                       Text="3"/>
+                        </Border>
+
+                        <Border Grid.Row="1"
+                                Grid.Column="0"
+                                MouseUp="Border_Key_Four_MouseUp"
+                                Name="Border_Key_Four"
+                                Margin="7">
+
+                            <TextBlock Name="Key_Four"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       FontSize="20"
+                                       Foreground="White"
+                                       Text="4"/>
+                        </Border>
+
+                        <Border Grid.Row="1"
+                                Grid.Column="1"
+                                MouseUp="Border_Key_Five_MouseUp"
+                                Name="Border_Key_Five"
+                                Margin="7">
+
+                            <TextBlock Name="Key_Five"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       FontSize="20"
+                                       Foreground="White"
+                                       Text="5"/>
+                        </Border>
+
+                        <Border Grid.Row="1"
+                                Grid.Column="2"
+                                MouseUp="Border_Key_Six_MouseUp"
+                                Name="Border_Key_Six"
+                                Margin="7">
+
+                            <TextBlock Name="Key_Six"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       FontSize="20"
+                                       Foreground="White"
+                                       Text="6"/>
+                        </Border>
+
+                        <Border Grid.Row="2"
+                                Grid.Column="0"
+                                MouseUp="Border_Key_Seven_MouseUp"
+                                Name="Border_Key_Seven"
+                                Margin="7">
+
+                            <TextBlock Name="Key_Seven"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       FontSize="20"
+                                       Foreground="White"
+                                       Text="7"/>
+                        </Border>
+
+                        <Border Grid.Row="2"
+                                Grid.Column="1"
+                                MouseUp="Border_Key_Eight_MouseUp"
+                                Name="Border_Key_Eight"
+                                Margin="7">
+
+                            <TextBlock Name="Key_Eight"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       FontSize="20"
+                                       Foreground="White"
+                                       Text="8"/>
+                        </Border>
+
+                        <Border Grid.Row="2"
+                                Grid.Column="2"
+                                MouseUp="Border_Key_Nine_MouseUp"
+                                Name="Border_Key_Nine"
+                                Margin="7">
+
+                            <TextBlock Name="Key_Nine"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       FontSize="20"
+                                       Foreground="White"
+                                       Text="9"/>
+                        </Border>
+
+                        <Border Grid.Row="3"
+                                Grid.Column="0"
+                                MouseUp="Border_Key_LessPower_MouseUp"
+                                x:Name="Border_Key_LessPower"
+                                Margin="7">
+
+                                <TextBlock Name="Key_LessPower"
+                                           VerticalAlignment="Center"
+                                           HorizontalAlignment="Center"
+                                           FontSize="10"
+                                           Foreground="White"
+                                           FontWeight="Bold"
+                                           Text="Potência -"/>
+                        </Border>
+
+                        <Border Grid.Row="3"
+                                Grid.Column="1"
+                                Name="Border_Key_Zero"
+                                MouseUp="Border_Key_Zero_MouseUp"
+                                Margin="7">
+
+                            <TextBlock Name="Key_Zero"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       FontSize="20"
+                                       Foreground="White"
+                                       Text="0"/>
+                        </Border>
+
+                        <Border Grid.Row="3"
+                                Grid.Column="2"
+                                MouseUp="Border_Key_MorePower_MouseUp"
+                                Name="Border_Key_MorePower"
+                                Margin="7">
+
+                            <TextBlock Name="Key_MorePower"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       FontSize="10"
+                                       FontWeight="Bold"
+                                       Foreground="White"
+                                       Text="Potência +"/>
+                        </Border>
+
+                    </Grid>
+                    
+                </Border>
+
+                <Border Name="Border_ActionKeys"
+                        CornerRadius="0 0 25 0"
+                        Grid.Row="4"
+                        Margin="5"
+                        Background="Gray">
+
+                    <Grid Name="Grid_ActionsKeys">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="*"/>
+                            <ColumnDefinition Width="*"/>
+                        </Grid.ColumnDefinitions>
+
+                        <Border Name="Border_ActionKey_Pause"
+                                MouseUp="Border_ActionKey_Pause_MouseUp"
+                                Margin="10">
+                            
+                            <TextBlock Name="Key_Pause"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       FontSize="15"
+                                       FontWeight="Bold"
+                                       Foreground="White"
+                                       Text="Cancelar"/>
+                        </Border>
+
+                        <Border Name="Border_ActionKey_Start"
+                                MouseUp="Border_ActionKey_Start_MouseUp"
+                                Margin="10"
+                                Grid.Column="1">
+                            
+                            <TextBlock Name="Key_Start"
+                                       VerticalAlignment="Center"
+                                       HorizontalAlignment="Center"
+                                       FontSize="15"
+                                       FontWeight="Bold"
+                                       Foreground="White"
+                                       Text="Iniciar"/>
+                        </Border>
+
+                    </Grid>
+                </Border>
+
+            </Grid>
+        </Grid>            
+    </Border>
 </Window>
