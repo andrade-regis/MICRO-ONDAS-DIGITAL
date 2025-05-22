@@ -1,4 +1,4 @@
-﻿<Window x:Class="APPLICATION.MainWindow"
+﻿<Window x:Class="APPLICATION.View.frmMicrowave"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -13,18 +13,19 @@
         mc:Ignorable="d"
         FontSize="16"
         Title="MainWindow">
-    
+
     <Border Name="Border_Background"
             CornerRadius="25"                
             Height="450" 
             Width="900"
             Background="#FFFEFE">
-        
+
         <Grid Name="Grid_Main"
               Background="Transparent">
 
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="700"/>
+                <ColumnDefinition Width="350"/>
+                <ColumnDefinition Width="350"/>
                 <ColumnDefinition Width="*"/>
             </Grid.ColumnDefinitions>
 
@@ -35,9 +36,16 @@
                    Width="300"
                    Source="C:\Apps\MICRO-ONDAS-DIGITAL\MANUAL\BENNER_LOGO.png"/>
 
+            <TextBox Name="Text_Progress"
+                     Grid.Column="1"
+                     TextWrapping="Wrap"
+                     FontSize="12"
+                     IsEnabled="False"
+                     Margin="40"/>
+
             <Grid Name="Grid_ControlPanel"
-                  Grid.Column="1">
-                
+                  Grid.Column="2">
+
                 <Grid.RowDefinitions>
                     <RowDefinition Height="40"/>
                     <RowDefinition Height="70"/>
@@ -51,7 +59,7 @@
                         Background="#E91D48"
                         MouseUp="Border_Sair_MouseUp"
                         CornerRadius="0 25 0 0">
-                    
+
                     <TextBlock Name="Text_Sair"
                                Grid.Row="0"
                                Foreground="#FFFEFE"
@@ -66,22 +74,26 @@
                         Margin="5"
                         Background="LightGray">
 
-                    <xctk:MaskedTextBox Name="Text_Timer_Edit"
-                                        Mask="00:00"
-                                        VerticalAlignment="Center"
-                                        HorizontalAlignment="Center"
-                                        FontSize="50"
-                                        FontWeight="Bold"
-                                        Foreground="#513CFF"
-                                        Visibility="Hidden"/>
+                    <TextBox Name="Text_Timer_Edit"
+                             VerticalAlignment="Center"
+                             HorizontalAlignment="Center"                               
+                             FontSize="50"
+                             Background="Transparent"
+                             FontWeight="Bold"
+                             BorderThickness="0"
+                             Foreground="#513CFF"
+                             KeyDown="Text_Timer_Edit_KeyDown"
+                             Text="00:00"
+                             Visibility="Hidden"/>
 
                     <TextBlock Name="Text_Timer"
                                VerticalAlignment="Center"
-                               HorizontalAlignment="Center"
+                               HorizontalAlignment="Center"                               
                                FontSize="50"
                                FontWeight="Bold"
                                Foreground="#513CFF"
                                Text="00:00"
+                               MouseDown="Text_Timer_MouseDown"
                                Visibility="Visible"/>
                 </Grid>
 
@@ -102,12 +114,12 @@
                             <RowDefinition Height="*"/>
                             <RowDefinition Height="*"/>
                         </Grid.RowDefinitions>
-                    
+
                         <Border Grid.Row="0"
                                 Name="Border_Key_One"
-                                MouseUp="Border_Key_One_MouseUp"
+                                MouseUp="Border_Key_Number_MouseUp"
                                 Margin="7">
-                            
+
                             <TextBlock Name="Key_One"
                                        VerticalAlignment="Center"
                                        HorizontalAlignment="Center"
@@ -115,13 +127,13 @@
                                        Foreground="White"
                                        Text="1"/>
                         </Border>
-                    
+
                         <Border Grid.Row="0"
                                 Name="Border_Key_Two"
-                                MouseUp="Border_Key_Two_MouseUp"
+                                MouseUp="Border_Key_Number_MouseUp"
                                 Grid.Column="1"
                                 Margin="7">
-                    
+
                             <TextBlock Name="Key_Two"
                                        VerticalAlignment="Center"
                                        HorizontalAlignment="Center"
@@ -129,13 +141,13 @@
                                        Foreground="White"
                                        Text="2"/>
                         </Border>
-                    
+
                         <Border Grid.Row="0"
                                 Name="Border_Key_Three"
-                                MouseUp="Border_Key_Three_MouseUp"
+                                MouseUp="Border_Key_Number_MouseUp"
                                 Grid.Column="2"
                                 Margin="7">
-                    
+
                             <TextBlock Name="Key_Three"
                                        VerticalAlignment="Center"
                                        HorizontalAlignment="Center"
@@ -146,7 +158,7 @@
 
                         <Border Grid.Row="1"
                                 Grid.Column="0"
-                                MouseUp="Border_Key_Four_MouseUp"
+                                MouseUp="Border_Key_Number_MouseUp"
                                 Name="Border_Key_Four"
                                 Margin="7">
 
@@ -160,7 +172,7 @@
 
                         <Border Grid.Row="1"
                                 Grid.Column="1"
-                                MouseUp="Border_Key_Five_MouseUp"
+                                MouseUp="Border_Key_Number_MouseUp"
                                 Name="Border_Key_Five"
                                 Margin="7">
 
@@ -174,7 +186,7 @@
 
                         <Border Grid.Row="1"
                                 Grid.Column="2"
-                                MouseUp="Border_Key_Six_MouseUp"
+                                MouseUp="Border_Key_Number_MouseUp"
                                 Name="Border_Key_Six"
                                 Margin="7">
 
@@ -188,7 +200,7 @@
 
                         <Border Grid.Row="2"
                                 Grid.Column="0"
-                                MouseUp="Border_Key_Seven_MouseUp"
+                                MouseUp="Border_Key_Number_MouseUp"
                                 Name="Border_Key_Seven"
                                 Margin="7">
 
@@ -202,7 +214,7 @@
 
                         <Border Grid.Row="2"
                                 Grid.Column="1"
-                                MouseUp="Border_Key_Eight_MouseUp"
+                                MouseUp="Border_Key_Number_MouseUp"
                                 Name="Border_Key_Eight"
                                 Margin="7">
 
@@ -216,7 +228,7 @@
 
                         <Border Grid.Row="2"
                                 Grid.Column="2"
-                                MouseUp="Border_Key_Nine_MouseUp"
+                                MouseUp="Border_Key_Number_MouseUp"
                                 Name="Border_Key_Nine"
                                 Margin="7">
 
@@ -234,7 +246,7 @@
                                 x:Name="Border_Key_LessPower"
                                 Margin="7">
 
-                                <TextBlock Name="Key_LessPower"
+                            <TextBlock Name="Key_LessPower"
                                            VerticalAlignment="Center"
                                            HorizontalAlignment="Center"
                                            FontSize="10"
@@ -246,7 +258,7 @@
                         <Border Grid.Row="3"
                                 Grid.Column="1"
                                 Name="Border_Key_Zero"
-                                MouseUp="Border_Key_Zero_MouseUp"
+                                MouseUp="Border_Key_Number_MouseUp"
                                 Margin="7">
 
                             <TextBlock Name="Key_Zero"
@@ -273,7 +285,7 @@
                         </Border>
 
                     </Grid>
-                    
+
                 </Border>
 
                 <Border Name="Border_ActionKeys"
@@ -291,21 +303,21 @@
                         <Border Name="Border_ActionKey_Pause"
                                 MouseUp="Border_ActionKey_Pause_MouseUp"
                                 Margin="10">
-                            
+
                             <TextBlock Name="Key_Pause"
                                        VerticalAlignment="Center"
                                        HorizontalAlignment="Center"
                                        FontSize="15"
                                        FontWeight="Bold"
                                        Foreground="White"
-                                       Text="Cancelar"/>
+                                       Text="Pausar"/>
                         </Border>
 
                         <Border Name="Border_ActionKey_Start"
                                 MouseUp="Border_ActionKey_Start_MouseUp"
                                 Margin="10"
                                 Grid.Column="1">
-                            
+
                             <TextBlock Name="Key_Start"
                                        VerticalAlignment="Center"
                                        HorizontalAlignment="Center"
@@ -319,6 +331,6 @@
                 </Border>
 
             </Grid>
-        </Grid>            
+        </Grid>
     </Border>
 </Window>
